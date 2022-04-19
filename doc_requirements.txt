@@ -1,0 +1,8 @@
+setuptools
+sphinx>=4.4.0
+pydata-sphinx-theme
+sphinx-panels
+sphinx-tabs
+numpydoc
+nbsphinx
+sphinx-rtd-theme
