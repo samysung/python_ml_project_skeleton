@@ -1,6 +1,3 @@
-from pmps.core.add import add as core_add
-
-
 def add(num1, num2):
     """
     Add up two integer numbers.
@@ -34,4 +31,4 @@ def add(num1, num2):
     >>> add(10, -10)
     0
     """
-    return core_add(num1, num2)
+    return num1 + num2

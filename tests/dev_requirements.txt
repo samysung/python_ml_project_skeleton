@@ -1,0 +1,6 @@
+pytest
+sphinx-autobuild
+pytest-bdd
+pylint
+flake8
+mypy

@@ -7,9 +7,22 @@ Welcome to python_ml_project_skeleton's documentation!
 ======================================================
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+    :maxdepth: 2
+    :caption: Basics
 
+    readme_link.md
+
+.. toctree::
+   :maxdepth: 2
+   :caption: API
+
+   add <add.rst>
+
+.. toctree::
+   :maxdepth: 1
+   :caption: CHANGELOG
+
+   changelogs <changelog.rst>
 
 
 Indices and tables
@@ -17,4 +30,3 @@ Indices and tables
 
 * :ref:`genindex`
 * :ref:`modindex`
-* :ref:`search`
