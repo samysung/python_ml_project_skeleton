@@ -5,7 +5,7 @@ name: "Build and deploy Github pages"
 on:
   push:         # <- trigger when we call push
     branches:
-      - main  # <- but only on mian branch
+      - test-gh-pages  # <- but only on mian branch
 
 jobs:
 
