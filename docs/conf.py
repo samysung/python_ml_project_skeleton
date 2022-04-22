@@ -56,7 +56,7 @@ html_static_path = ['_static']
 # -- HTML theme settings -----------------------------------------------
 html_show_sourcelink = True
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
+templates_path = ['source/_templates']
 html_sidebars = {
     "**": ["logo-text.html", "globaltoc.html", "localtoc.html", "searchbox.html", 'versioning.html']
 }
