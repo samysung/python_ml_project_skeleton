@@ -42,6 +42,7 @@ extensions = [
                 'sphinx.ext.autodoc',
                 theme_plugin,
                 'sphinx_tabs.tabs',
+                "sphinx_multiversion",
                 "myst_parser"
               ]
 tag_version = True
@@ -59,7 +60,7 @@ html_show_sourcelink = True
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 html_sidebars = {
-    "**": ["logo-text.html", "globaltoc.html", "localtoc.html", "searchbox.html", 'versioning.html']
+    "**": ["logo-text.html", "globaltoc.html", "localtoc.html"]
 }
 
 html_theme_path = sphinx_material.html_theme_path()
