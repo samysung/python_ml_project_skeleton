@@ -2,10 +2,10 @@
 
 # Copy contents
 mkdir gh-pages
-cp -r ./docs/build/html/. gh-pages
-touch .nojekyll
+# cp -r ./docs/build/html/. gh-pages
+# touch .nojekyll
 # Create gh-pages branch
-cd gh-pages || exit
+cd ./docs/build/html/. || exit
 
 git init
 git config --local user.email "samy.khelifi@ign.fr"
