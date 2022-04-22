@@ -10,12 +10,12 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-# import os
-# import sys
-# sys.path.insert(0, os.path.abspath('.'))
+import os
+import sys
 import pathlib
 import sphinx_material
-
+import sphinx_rtd_theme
+sys.path.insert(0, os.path.abspath('../'))
 
 # -- Project information -----------------------------------------------------
 
@@ -23,7 +23,7 @@ project = 'python_ml_project_skeleton'
 copyright = '2022, samy khelifi and IGN/SIMV'
 author = 'samy khelifi@IGN/SIMV'
 this_dir = pathlib.Path(__file__).resolve().parent
-with (this_dir / ".." / ".." / "VERSION").open() as vf:
+with (this_dir / ".." / "VERSION").open() as vf:
     version = vf.read().strip()
 print("Version as read from version.txt: '{}'".format(version))
 # The full version, including alpha/beta/rc tags
@@ -35,7 +35,7 @@ release = version
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-theme_plugin = 'sphinx_rtd_theme'
+theme_plugin = 'sphinx_material'
 extensions = [
                 'sphinx.ext.napoleon',
                 'sphinx.ext.autosummary',
@@ -44,6 +44,7 @@ extensions = [
                 'sphinx_tabs.tabs',
                 "myst_parser"
               ]
+tag_version = True
 html_theme = theme_plugin
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -56,7 +57,7 @@ html_static_path = ['_static']
 # -- HTML theme settings -----------------------------------------------
 html_show_sourcelink = True
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['source/_templates']
+templates_path = ['_templates']
 html_sidebars = {
     "**": ["logo-text.html", "globaltoc.html", "localtoc.html", "searchbox.html", 'versioning.html']
 }
@@ -69,18 +70,18 @@ html_context = sphinx_material.get_html_context()
 html_theme_options = {
 
     # Set the name of the project to appear in the navigation.
-    # 'nav_title': 'python ml project skeleton',
+    'nav_title': 'python ml project skeleton',
     # Specify a base_url used to generate sitemap.xml. If not
     # specified, then no sitemap will be built.
-    # 'base_url': 'https://samysung.github.io/python_ml_project_skeleton',
+    'base_url': 'https://samysung.github.io/python_ml_project_skeleton',
     # Set the color and the accent color
-    # 'color_primary': 'deep-purple',
+    'color_primary': 'deep-purple',
     # 'color_accent': 'cyan',
     # Set the repo location to get a badge with stats
-    # 'repo_url': 'https://github.com/samysung/python_ml_project_skeleton',
-    # "'repo_name': 'python_ml_project_skeleton',
+    'repo_url': 'https://github.com/samysung/python_ml_project_skeleton',
+    'repo_name': 'python_ml_project_skeleton',
     # Visible levels of the global TOC; -1 means unlimited
-    # 'globaltoc_depth': 3,
+    'globaltoc_depth': 3,
     # If False, expand all TOC entries
     'globaltoc_collapse': True,
     # If True, show hidden TOC entries
@@ -89,7 +90,6 @@ html_theme_options = {
 
 source_suffix = {
     '.rst': 'restructuredtext',
-    '.txt': 'markdown',
     '.md': 'markdown',
 }
 
