@@ -35,7 +35,7 @@ release = version
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-theme_plugin = 'sphinx_material'
+theme_plugin = 'sphinx_rtd_theme'
 extensions = [
                 'sphinx.ext.napoleon',
                 'sphinx.ext.autosummary',
@@ -59,16 +59,17 @@ html_static_path = ['_static']
 html_show_sourcelink = True
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
-html_sidebars = {
-    "**": ["logo-text.html", "globaltoc.html", "localtoc.html"]
-}
+if theme_plugin == "sphinx_material":
+    html_sidebars = {
+        "**": ["logo-text.html", "globaltoc.html", "localtoc.html"]
+    }
 
 html_theme_path = sphinx_material.html_theme_path()
 html_context = sphinx_material.get_html_context()
 
 # Material theme options (see theme.conf for more information)
 
-html_theme_options = {
+material_html_theme_options = {
 
     # Set the name of the project to appear in the navigation.
     'nav_title': 'python ml project skeleton',
@@ -88,7 +89,23 @@ html_theme_options = {
     # If True, show hidden TOC entries
     'globaltoc_includehidden': False,
 }
-
+rtd_html_theme_options = {
+    'analytics_id': 'G-XXXXXXXXXX',  #  Provided by Google in your dashboard
+    'analytics_anonymize_ip': False,
+    'logo_only': False,
+    'display_version': True,
+    'prev_next_buttons_location': 'bottom',
+    'style_external_links': False,
+    'vcs_pageview_mode': '',
+    'style_nav_header_background': 'white',
+    # Toc options
+    'collapse_navigation': True,
+    'sticky_navigation': True,
+    'navigation_depth': 4,
+    'includehidden': True,
+    'titles_only': False
+}
+html_theme_options = rtd_html_theme_options if theme_plugin == 'sphinx_rtd_theme' else material_html_theme_options
 source_suffix = {
     '.rst': 'restructuredtext',
     '.md': 'markdown',
