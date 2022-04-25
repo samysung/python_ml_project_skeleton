@@ -66,9 +66,6 @@ html_show_sourcelink = True
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 
-
-html_theme_path = sphinx_material.html_theme_path()
-html_context = sphinx_material.get_html_context()
 # Changing sidebar title to Kornia
 html_title = "pmps  "
 html_favicon = '_static/img/logo_favicon.png'
