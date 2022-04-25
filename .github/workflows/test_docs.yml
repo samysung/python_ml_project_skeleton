@@ -20,33 +20,20 @@ jobs:
             python-version: "3.9"
             channel-priority: "strict"
             envfile: "docs/doc_env.yml"
+            reqfile: "docs/doc_requirements.txt"
     steps:
     - uses: actions/checkout@v2
-    - name: Cache conda
-      uses: actions/cache@v2
-      env:
-          # Increase this value to reset cache if etc/example-environment.yml has not changed
-          CACHE_NUMBER: 1
-      with:
-          path: ~/conda_pkgs_dir
-          key: ${{ runner.os }}-${{ matrix.python-version }}-conda-${{ env.CACHE_NUMBER }}-${{ hashFiles( matrix.envfile ) }}
-    - name: Install Conda environment
-      uses: conda-incubator/setup-miniconda@v2
-      with:
-          auto-update-conda: false
-          python-version: ${{ matrix.python-version }}
-          add-pip-as-python-dependency: true
-          auto-activate-base: false
-          activate-environment: docs
-          channel-priority: ${{ matrix.channel-priority }}
-          environment-file: ${{ matrix.envfile }}
-          use-only-tar-bz2: true # IMPORTANT: This needs to be set for caching to work properly!
 
+    - name: Install Conda environment with Micromamba
+      uses: mamba-org/provision-with-micromamba@main
+      with:
+        environment-file: ${{ matrix.envfile }}
     - name: Conda info
       shell: bash -l {0}
       run: |
         conda info -a
         conda list
+        pip install ${{ matrix.reqfile }}
     - name: Build Documentation
       shell: bash -l {0}
       working-directory: docs
