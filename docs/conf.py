@@ -35,15 +35,23 @@ release = version
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-theme_plugin = 'sphinx_rtd_theme'
+theme_plugin = 'furo'
+pygments_style = 'friendly'
+pygments_dark_style = "monokai"
 extensions = [
                 'sphinx.ext.napoleon',
                 'sphinx.ext.autosummary',
                 'sphinx.ext.autodoc',
-                theme_plugin,
                 'sphinx_tabs.tabs',
-                "sphinx_multiversion",
-                "myst_parser"
+                "myst_parser",
+                'sphinx.ext.doctest',
+                'sphinx.ext.intersphinx',
+                'sphinx.ext.mathjax',
+                'sphinx.ext.napoleon',
+                'sphinx_autodoc_typehints',
+                'sphinx_autodoc_defaultargs',
+                'sphinx_copybutton',
+                'sphinx.ext.viewcode'
               ]
 tag_version = True
 html_theme = theme_plugin
@@ -59,82 +67,38 @@ html_static_path = ['_static']
 html_show_sourcelink = True
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
-if theme_plugin == "sphinx_material":
-    html_sidebars = {
-        "**": ["logo-text.html", "globaltoc.html", "localtoc.html"]
-    }
+
 
 html_theme_path = sphinx_material.html_theme_path()
 html_context = sphinx_material.get_html_context()
+# Changing sidebar title to Kornia
+html_title = "pmps  "
+html_favicon = '_static/img/logo_favicon.png'
+html_theme_options = {
+    "sidebar_hide_name": True,
+    "navigation_with_keys": True,
+    "light_css_variables": {
+        "color-sidebar-background": "#3980F5",
+        "color-sidebar-background-border": "#3980F5",
+        "color-sidebar-caption-text": "white",
+        "color-sidebar-link-text--top-level": "white",
+        "color-sidebar-link-text": "white",
+        "sidebar-caption-font-size": "normal",
+        "color-sidebar-item-background--hover": " #5dade2",
+    },
+    "dark_css_variables": {
+        "color-sidebar-background": "#1a1c1e",
+        "color-sidebar-background-border": "#1a1c1e",
+        "color-sidebar-caption-text": "white",
+        "color-sidebar-link-text--top-level": "white",
+    },
 
-# Material theme options (see theme.conf for more information)
 
-material_html_theme_options = {
-
-    # Set the name of the project to appear in the navigation.
-    'nav_title': 'python ml project skeleton',
-    # Specify a base_url used to generate sitemap.xml. If not
-    # specified, then no sitemap will be built.
-    'base_url': 'https://samysung.github.io/python_ml_project_skeleton',
-    # Set the color and the accent color
-    'color_primary': 'deep-purple',
-    # 'color_accent': 'cyan',
-    # Set the repo location to get a badge with stats
-    'repo_url': 'https://github.com/samysung/python_ml_project_skeleton',
-    'repo_name': 'python_ml_project_skeleton',
-    # Visible levels of the global TOC; -1 means unlimited
-    'globaltoc_depth': 3,
-    # If False, expand all TOC entries
-    'globaltoc_collapse': True,
-    # If True, show hidden TOC entries
-    'globaltoc_includehidden': False,
 }
-rtd_html_theme_options = {
-    'analytics_id': 'G-XXXXXXXXXX',  #  Provided by Google in your dashboard
-    'analytics_anonymize_ip': False,
-    'logo_only': False,
-    'display_version': True,
-    'prev_next_buttons_location': 'bottom',
-    'style_external_links': False,
-    'vcs_pageview_mode': '',
-    'style_nav_header_background': 'white',
-    # Toc options
-    'collapse_navigation': True,
-    'sticky_navigation': True,
-    'navigation_depth': 4,
-    'includehidden': True,
-    'titles_only': False
-}
-html_theme_options = rtd_html_theme_options if theme_plugin == 'sphinx_rtd_theme' else material_html_theme_options
 source_suffix = {
     '.rst': 'restructuredtext',
     '.md': 'markdown',
 }
 
-# -- Options for HTML output -------------------------------------------------
-
-# The theme to use for HTML and HTML Help pages.  See the documentation for
-# a list of builtin themes.
-#
-
-# Sphinx multiversion configuration
-
-# Whitelist pattern for tags (set to None to ignore all tags)
-smv_tag_whitelist = r'^t\d+\.\d+$' # include tags like vX.Y (v1.2, v2.6)
-
-# Whitelist pattern for branches (set to None to ignore all branches)
-smv_branch_whitelist = r'^.*$'
-
-# Whitelist pattern for remotes (set to None to use local branches only)
-smv_remote_whitelist = None
-
-# Pattern for released versions
-smv_released_pattern = r'^tags/.*$'
-
-# Format for versioned output directories inside the build directory
-smv_outputdir_format = '{ref.name}'
-
-# Determines whether remote or local git branches/tags are preferred if their output dirs conflict
-smv_prefer_remote_refs = False
 
 

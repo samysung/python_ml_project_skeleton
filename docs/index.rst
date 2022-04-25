@@ -7,8 +7,8 @@ Welcome to python_ml_project_skeleton's documentation!
 ======================================================
 
 .. toctree::
-    :maxdepth: 2
-    :caption: Basics
+    :caption: GET STARTED
+    :hidden:
 
     readme_link.md
 

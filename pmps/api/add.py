@@ -1,7 +1,7 @@
 from pmps.core.add import add as core_add
 
 
-def add(num1, num2):
+def add(num1: int, num2: int) -> int:
     """
     Add up two integer numbers.
 
@@ -11,9 +11,9 @@ def add(num1, num2):
 
     Parameters
     ----------
-    num1 : int
+    num1
         First number to add.
-    num2 : int
+    num2
         Second number to add.
 
     Returns

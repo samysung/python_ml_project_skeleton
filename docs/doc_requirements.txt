@@ -4,7 +4,12 @@ sphinx-panels
 sphinx-tabs
 numpydoc
 nbsphinx
-sphinx-multiversion
-sphinx-material
 sphinx-tabs
 myst-parser
+sphinx-autodoc-typehints>=1.0
+sphinx-copybutton>=0.3
+sphinx-autodoc-defaultargs
+PyYAML>=5.1,<6.1.0
+furo
+sphinx-design
+sphinx-autobuild
