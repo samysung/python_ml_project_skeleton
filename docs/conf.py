@@ -68,7 +68,7 @@ templates_path = ['_templates']
 
 # Changing sidebar title to Kornia
 html_title = "pmps  "
-html_favicon = '_static/img/logo_favicon.png'
+html_favicon = '_static/img/logo_favicon.ico'
 html_theme_options = {
     "sidebar_hide_name": True,
     "navigation_with_keys": True,

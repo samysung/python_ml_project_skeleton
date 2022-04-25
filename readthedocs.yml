@@ -7,3 +7,8 @@ build:
 
 conda:
   environment: docs/doc_env.yml
+
+sphinx:
+  builder: html
+  configuration: conf.py
+  fail_on_warning: true
