@@ -27,8 +27,6 @@ jobs:
 
     - name: check env file
       run: cat ${{ matrix.envfile }}
-    - name: check requirement file
-      run: cat ${{ matrix.reqfile }}
     - name: Setup Mambaforge
       uses: conda-incubator/setup-miniconda@v2
       with:
