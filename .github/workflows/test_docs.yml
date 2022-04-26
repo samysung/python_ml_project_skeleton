@@ -53,9 +53,9 @@ jobs:
       run: |
         conda info -a
         conda list
-    - name: pip install -r requirements
+    - name: pip install  requirements
       shell: bash -l {0}
-      run: pip install ${{ matrix.reqfile }}
+      run: pip install -r ${{ matrix.reqfile }}
     - name: Build Documentation
       shell: bash -l {0}
       working-directory: docs
