@@ -24,6 +24,12 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: check env file
+      run: cat ${{ matrix.envfile }}
+
+    - name: check requirement file
+      run: cat ${{ matrix.reqfile }}
+
     - name: Install Conda environment with Micromamba
       uses: mamba-org/provision-with-micromamba@main
       with:
@@ -33,7 +39,9 @@ jobs:
       run: |
         conda info -a
         conda list
-        pip install ${{ matrix.reqfile }}
+    - name: pip install oc requirements
+      shell: bash -l {0}
+      run: pip install ${{ matrix.reqfile }}
     - name: Build Documentation
       shell: bash -l {0}
       working-directory: docs
