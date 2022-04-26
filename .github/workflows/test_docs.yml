@@ -53,7 +53,7 @@ jobs:
       run: |
         conda info -a
         conda list
-    - name: pip install oc requirements
+    - name: pip install -r requirements
       shell: bash -l {0}
       run: pip install ${{ matrix.reqfile }}
     - name: Build Documentation
