@@ -21,6 +21,7 @@ jobs:
             channel-priority: "strict"
             envfile: "docs/doc_env.yml"
             reqfile: "docs/doc_requirements.txt"
+            prefix: /usr/share/miniconda3/envs/docs
             pip_path: ~/.cache/pip
     steps:
     - uses: actions/checkout@v2
