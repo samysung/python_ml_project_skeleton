@@ -41,7 +41,7 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ matrix.prefix }}
-        key: ${{ matrix.label }}-conda-${{ hashFiles(${{ matrix.envfile }}) }}-${{ env.DATE }}-${{ env.CACHE_NUMBER }}
+        key: ${{ matrix.label }}-conda-${{ hashFiles('docs/doc_env.yml') }}-${{ env.DATE }}-${{ env.CACHE_NUMBER }}
       id: cache
 
     - name: Update environment
