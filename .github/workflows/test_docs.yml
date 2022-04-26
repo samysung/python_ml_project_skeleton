@@ -35,18 +35,18 @@ jobs:
         activate-environment: docs
         use-mamba: true
 
-      - name: Set cache date
-          run: echo "DATE=$(date +'%Y%m%d')" >> $GITHUB_ENV
+    - name: Set cache date
+      run: echo "DATE=$(date +'%Y%m%d')" >> $GITHUB_ENV
 
-      - uses: actions/cache@v2
-          with:
-            path: ${{ matrix.prefix }}
-            key: ${{ matrix.label }}-conda-${{ hashFiles(${{ matrix.envfile }}) }}-${{ env.DATE }}-${{ env.CACHE_NUMBER }}
-          id: cache
+    - uses: actions/cache@v2
+      with:
+        path: ${{ matrix.prefix }}
+        key: ${{ matrix.label }}-conda-${{ hashFiles(${{ matrix.envfile }}) }}-${{ env.DATE }}-${{ env.CACHE_NUMBER }}
+      id: cache
 
-      - name: Update environment
-          run: mamba env update -n docs -f ${{ matrix.envfile }}
-          if: steps.cache.outputs.cache-hit != 'true'
+    - name: Update environment
+      run: mamba env update -n docs -f ${{ matrix.envfile }}
+      if: steps.cache.outputs.cache-hit != 'true'
     - name: Conda info
       shell: bash -l {0}
       run: |
