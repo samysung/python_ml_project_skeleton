@@ -13,13 +13,14 @@
 import os
 import sys
 import pathlib
-sys.path.insert(0, os.path.abspath('../'))
+
+sys.path.insert(0, os.path.abspath("../"))
 
 # -- Project information -----------------------------------------------------
 
-project = 'python_ml_project_skeleton'
-copyright = '2022, samy khelifi and IGN/SIMV'
-author = 'samy khelifi@IGN/SIMV'
+project = "python_ml_project_skeleton"
+copyright = "2022, samy khelifi and IGN/SIMV"
+author = "samy khelifi@IGN/SIMV"
 this_dir = pathlib.Path(__file__).resolve().parent
 with (this_dir / ".." / "VERSION").open() as vf:
     version = vf.read().strip()
@@ -33,24 +34,24 @@ release = version
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-theme_plugin = 'furo'
-pygments_style = 'friendly'
+theme_plugin = "furo"
+pygments_style = "friendly"
 pygments_dark_style = "monokai"
 extensions = [
-                'sphinx.ext.napoleon',
-                'sphinx.ext.autosummary',
-                'sphinx.ext.autodoc',
-                'sphinx_tabs.tabs',
-                "myst_parser",
-                'sphinx.ext.doctest',
-                'sphinx.ext.intersphinx',
-                'sphinx.ext.mathjax',
-                'sphinx.ext.napoleon',
-                'sphinx_autodoc_typehints',
-                'sphinx_autodoc_defaultargs',
-                'sphinx_copybutton',
-                'sphinx.ext.viewcode'
-              ]
+    "sphinx.ext.napoleon",
+    "sphinx.ext.autosummary",
+    "sphinx.ext.autodoc",
+    "sphinx_tabs.tabs",
+    "myst_parser",
+    "sphinx.ext.doctest",
+    "sphinx.ext.intersphinx",
+    "sphinx.ext.mathjax",
+    "sphinx.ext.napoleon",
+    "sphinx_autodoc_typehints",
+    "sphinx_autodoc_defaultargs",
+    "sphinx_copybutton",
+    "sphinx.ext.viewcode",
+]
 tag_version = True
 html_theme = theme_plugin
 # List of patterns, relative to source directory, that match files and
@@ -60,15 +61,15 @@ exclude_patterns = []
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
+html_static_path = ["_static"]
 # -- HTML theme settings -----------------------------------------------
 html_show_sourcelink = True
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
+templates_path = ["_templates"]
 
 # Changing sidebar title to Kornia
 html_title = "pmps  "
-html_favicon = '_static/img/logo_favicon.ico'
+html_favicon = "_static/img/logo_favicon.ico"
 html_theme_options = {
     "sidebar_hide_name": True,
     "navigation_with_keys": True,
@@ -87,13 +88,8 @@ html_theme_options = {
         "color-sidebar-caption-text": "white",
         "color-sidebar-link-text--top-level": "white",
     },
-
-
 }
 source_suffix = {
-    '.rst': 'restructuredtext',
-    '.md': 'markdown',
+    ".rst": "restructuredtext",
+    ".md": "markdown",
 }
-
-
-

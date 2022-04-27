@@ -1,6 +1,5 @@
 pytest
-sphinx-autobuild
-pytest-bdd
 pylint
-flake8
+flake8==3.9.2
 mypy
+pre-commit>=2.0

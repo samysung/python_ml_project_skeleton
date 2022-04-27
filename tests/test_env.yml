@@ -1,8 +1,8 @@
-name: docs
+name: tests_pmps
 channels:
   - conda-forge
   - defaults
 dependencies:
   - python>=3.9
   - pip:
-      - -r doc_requirements.txt
+      - -r test_requirements.txt

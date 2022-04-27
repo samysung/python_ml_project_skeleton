@@ -1,3 +1,8 @@
+"""
+core.add module
+"""
+
+
 def add(num1, num2):
     """
     Add up two integer numbers.
