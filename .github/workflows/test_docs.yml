@@ -3,7 +3,7 @@ name: test-docs
 on:
   push:
     branches:
-      - test_rtd
+      - main
   pull_request:
 #  schedule:
 #    - cron: "0 12 * * *" # test every 12 hours
