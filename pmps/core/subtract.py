@@ -1,22 +1,21 @@
-"""
-core.add module
+"""core.subtract module
 """
 
 
-def add(num1, num2):
+def subtract(num1, num2):
     """
     Add up two integer numbers.
 
-    This function simply wraps the ``+`` operator, and does not
+    This function simply wraps the ``-`` operator, and does not
     do anything interesting, except for illustrating what
     the docstring of a very simple function looks like.
 
     Parameters
     ----------
     num1 : int
-        First number to add.
+        First number.
     num2 : int
-        Second number to add.
+        Second number to subtract to first number.
 
     Returns
     -------
@@ -29,11 +28,11 @@ def add(num1, num2):
 
     Examples
     --------
-    >>> add(2, 2)
-    4
-    >>> add(25, 0)
-    25
-    >>> add(10, -10)
+    >>> subtract(2, 2)
     0
+    >>> subtract(25, 0)
+    25
+    >>> subtract(10, -10)
+    20
     """
-    return num1 + num2
+    return num1 - num2
