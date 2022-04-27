@@ -26,11 +26,8 @@ repos:
         files: ^pmps/
         entry: bash -c 'mypy "$@" || true' --
 
-- repo: https://github.com/pre-commit/mirrors-pylint
-  rev: v3.0.0a3
+- repo: https://github.com/PyCQA/isort
+  rev: 5.10.1
   hooks:
-    - id: pylint
-      args:
-        [ "pmps/",
-          "--fail-under=6"
-        ]
+    - id: isort
+      name: Format imports
