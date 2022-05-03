@@ -1,29 +1,29 @@
-name: test-docs
+name: tests-code
 
 on:
   push:
     branches: [main, pytest]
   pull_request:
+    branches: [main]
+    types: [opened, reopened, synchronize, review_requested, ready_for_review]
 #  schedule:
-#    - cron: "0 12 * * *" # test every 12 hours
+#    - cron: "0 4 * * *"
 
 jobs:
-  build-docs:
-    name: "Documentation test build"
+  tests-cpu:
+    name: "unit test the package"
     runs-on: ${{ matrix.os }}
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
+        os: [ ubuntu-latest, macos-latest, windows-latest ]
+        python-version: [ 3.9, 3.10 ]
         include:
-          - os: ubuntu-latest
-            python-version: "3.9"
-            channel-priority: "strict"
-            env: "doc"
+          - env: "test"
             prefix: /usr/share/miniconda3/envs/docs
             pip_path: ~/.cache/pip
     steps:
     - uses: actions/checkout@v2
-
     - name: check env file
       run: cat ${{ matrix.envfile }}
     - name: Setup Mambaforge
@@ -31,8 +31,9 @@ jobs:
       with:
         miniforge-variant: Mambaforge
         miniforge-version: latest
-        activate-environment: docs
+        activate-environment: ${{ matrix.env }}
         use-mamba: true
+        python-version: ${{ matrix.python-version }}
 
     - name: Set cache date
       run: echo "DATE=$(date +'%Y%m%d')" >> $GITHUB_ENV
@@ -51,7 +52,12 @@ jobs:
       run: |
         conda info -a
         conda list
-    - name: Build Documentation
+    - name: Run Tests
       shell: bash -l {0}
-      working-directory: docs
-      run: make html
+      run: pytest -v --cov=pmps.api --cov-report xml test/ --flake8 --mypy
+    - name: Upload coverage
+      uses: codecov/codecov-action@v1
+      with:
+        file: coverage.xml
+        flags: pytest, os${{ matrix.os }}, python${{ matrix.python-version }}
+        name: coverage-pmps

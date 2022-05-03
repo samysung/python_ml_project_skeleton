@@ -1,8 +1,0 @@
-name: tests_pmps
-channels:
-  - conda-forge
-  - defaults
-dependencies:
-  - python>=3.9
-  - pip:
-      - -r test_requirements.txt
