@@ -24,14 +24,14 @@ jobs:
             pip_path: ~/.cache/pip
     steps:
     - uses: actions/checkout@v2
-    - name: check env file
-      run: cat ${{ format('env/{0}_env.yml', matrix.env) }}
+    - name: check packaging file
+      run: cat ${{ format('packaging/{0}_env.yml', matrix.packaging) }}
     - name: Setup Mambaforge
       uses: conda-incubator/setup-miniconda@v2
       with:
         miniforge-variant: Mambaforge
         miniforge-version: latest
-        activate-environment: ${{ matrix.env }}
+        activate-environment: ${{ matrix.packaging }}
         use-mamba: true
         python-version: ${{ matrix.python-version }}
 
@@ -41,11 +41,11 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ matrix.prefix }}
-        key: ${{ matrix.label }}-conda-${{ hashFiles(format('env/{0}_env.yml', matrix.env)) }}-${{ env.DATE }}-${{ env.CACHE_NUMBER }}
+        key: ${{ matrix.label }}-conda-${{ hashFiles(format('packaging/{0}_env.yml', matrix.packaging)) }}-${{ env.DATE }}-${{ env.CACHE_NUMBER }}
       id: cache
 
     - name: Update environment
-      run: mamba env update -n docs -f ${{ format('env/{0}_env.yml', matrix.env) }}
+      run: mamba packaging update -n docs -f ${{ format('packaging/{0}_env.yml', matrix.packaging) }}
       if: steps.cache.outputs.cache-hit != 'true'
     - name: Conda info
       shell: bash -l {0}

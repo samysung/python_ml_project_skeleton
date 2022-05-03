@@ -6,9 +6,9 @@ build:
     python: "mambaforge-4.10"
 
 conda:
-  environment: env/doc_env.yml
+  environment: packaging/doc_env.yml
 
 sphinx:
   builder: html
-  configuration: env/conf.py
+  configuration: packaging/conf.py
   fail_on_warning: true
