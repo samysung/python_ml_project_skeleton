@@ -40,7 +40,7 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ matrix.prefix }}
-        key: ${{ matrix.label }}-conda-${{ hashFiles(format('env/{0}_env.yml', matrix.env) }}-${{ env.DATE }}-${{ env.CACHE_NUMBER }}
+        key: ${{ matrix.label }}-conda-${{ hashFiles(format('env/{0}_env.yml', matrix.env)) }}-${{ env.DATE }}-${{ env.CACHE_NUMBER }}
       id: cache
 
     - name: Update environment
