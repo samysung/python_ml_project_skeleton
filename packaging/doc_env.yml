@@ -1,8 +1,10 @@
-name: docs
+name: doc
 channels:
   - conda-forge
   - defaults
 dependencies:
-  - python>=3.9
+  - pip==22.0.4
+  - geopandas>=0.10
+  - rasterio>=1.1.5
   - pip:
       - -r doc_requirements.txt
