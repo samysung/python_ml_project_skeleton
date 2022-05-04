@@ -31,7 +31,7 @@ jobs:
       with:
         miniforge-variant: Mambaforge
         miniforge-version: latest
-        activate-environment: ${{ matrix.packaging }}
+        activate-environment: ${{ matrix.env }}
         use-mamba: true
         python-version: ${{ matrix.python-version }}
 
