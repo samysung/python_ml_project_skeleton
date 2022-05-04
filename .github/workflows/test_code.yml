@@ -57,6 +57,8 @@ jobs:
     - name: Update environment
       run: mamba env update -n ${{ matrix.env }} -f ${{ format('packaging/{0}_env.yml', matrix.env) }}
       if: steps.cache.outputs.cache-hit != 'true'
+    - name: Test package install
+      run: pip install -e .
     - name: Conda info
       shell: bash -l {0}
       run: |
