@@ -9,6 +9,9 @@ on:
 #  schedule:
 #    - cron: "0 4 * * *"
 
+env:
+  CACHE_NUMBER: 1  # increase to reset cache manually
+
 jobs:
   tests-cpu:
     name: "unit test the package"
@@ -27,10 +30,10 @@ jobs:
             prefix: /usr/share/miniconda3/envs/test
           - os: macos-latest
             label: osx-64
-            pip_path: macos-latest
+            pip_path: ~/Library/Caches/pip
             prefix: /usr/share/miniconda3/envs/test
           - os: windows-latest
-            pip_path: C:\.cache/pip
+            pip_path: ~\AppData\Local\pip\Cache
             prefix: C:\Miniconda3\envs\test
     steps:
     - uses: actions/checkout@v2
