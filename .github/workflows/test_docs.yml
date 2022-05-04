@@ -44,7 +44,7 @@ jobs:
       id: cache
 
     - name: Update environment
-      run: mamba env update -n docs -f ${{ format('packaging/{0}_env.yml', matrix.env) }}
+      run: mamba env update -n ${{ matrix.env }} -f ${{ format('packaging/{0}_env.yml', matrix.env) }}
       if: steps.cache.outputs.cache-hit != 'true'
     - name: Conda info
       shell: bash -l {0}
