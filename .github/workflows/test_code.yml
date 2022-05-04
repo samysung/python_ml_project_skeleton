@@ -13,6 +13,7 @@ jobs:
   tests-cpu:
     name: "unit test the package"
     runs-on: ${{ matrix.os }}
+
     strategy:
       fail-fast: false
       matrix:
@@ -23,14 +24,14 @@ jobs:
           - os: ubuntu-latest
             label: linux-64
             pip_path: ~/.cache/pip
-            prefix: /usr/share/miniconda3/envs/${{ matrix.env }}
+            prefix: /usr/share/miniconda3/envs/test
           - os: macos-latest
             label: osx-64
             pip_path: macos-latest
-            prefix: /usr/share/miniconda3/envs/${{ matrix.env }}
+            prefix: /usr/share/miniconda3/envs/test
           - os: windows-latest
             pip_path: C:\.cache/pip
-            prefix: C:\Miniconda3\envs\${{ matrix.env }}
+            prefix: C:\Miniconda3\envs\test
     steps:
     - uses: actions/checkout@v2
     - name: check packaging file
