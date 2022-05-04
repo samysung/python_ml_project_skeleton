@@ -54,7 +54,7 @@ jobs:
         conda list
     - name: Run Tests
       shell: bash -l {0}
-      run: pytest -v --cov=pmps.api --cov-report xml test/ --flake8 --mypy
+      run: pytest -v --cov=pmps.api --cov-report xml tests --flake8 --mypy
     - name: Upload coverage
       uses: codecov/codecov-action@v1
       with:
