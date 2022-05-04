@@ -31,7 +31,7 @@ jobs:
       with:
         miniforge-variant: Mambaforge
         miniforge-version: latest
-        activate-environment: docs
+        activate-environment: doc
         use-mamba: true
 
     - name: Set cache date
