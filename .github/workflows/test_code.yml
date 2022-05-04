@@ -20,8 +20,17 @@ jobs:
         python-version: [ 3.9, '3.10' ]
         include:
           - env: "test"
-            prefix: /usr/share/miniconda3/envs/docs
+          - os: ubuntu-latest
+            label: linux-64
             pip_path: ~/.cache/pip
+            prefix: /usr/share/miniconda3/envs/${{ matrix.env }}
+          - os: macos-latest
+            label: osx-64
+            pip_path: macos-latest
+            prefix: /usr/share/miniconda3/envs/${{ matrix.env }}
+          - os: windows-latest
+            pip_path: C:\.cache/pip
+            prefix: C:\Miniconda3\envs\${{ matrix.env }}
     steps:
     - uses: actions/checkout@v2
     - name: check packaging file
