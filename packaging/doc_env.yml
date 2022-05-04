@@ -7,5 +7,4 @@ dependencies:
   - geopandas>=0.10
   - rasterio>=1.1.5
   - pip:
-      - -r requirements.txt
       - -r doc_requirements.txt

@@ -19,7 +19,7 @@ jobs:
             python-version: "3.9"
             channel-priority: "strict"
             env: "doc"
-            prefix: /usr/share/miniconda3/envs/docs
+            prefix: /usr/share/miniconda3/envs/doc
             pip_path: ~/.cache/pip
     steps:
     - uses: actions/checkout@v2
