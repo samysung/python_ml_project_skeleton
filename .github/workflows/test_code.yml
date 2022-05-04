@@ -10,7 +10,7 @@ on:
 #    - cron: "0 4 * * *"
 
 env:
-  CACHE_NUMBER: 1  # increase to reset cache manually
+  CACHE_NUMBER: 2  # increase to reset cache manually
 
 jobs:
   tests-cpu:
