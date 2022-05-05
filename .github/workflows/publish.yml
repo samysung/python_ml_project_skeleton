@@ -1,0 +1,74 @@
+name: PyPI Release
+
+# https://help.github.com/en/actions/reference/events-that-trigger-workflows
+on:  # Trigger the workflow on push or pull request, but only for the master branch
+  push:
+    branches: [main, test_pypi]
+  release:
+    types: [published]
+
+env:
+  CACHE_NUMBER: 0
+  env_name: packaging
+  env_file: packaging/package_env.yml
+  python_version: 3.9
+jobs:
+
+  build-sdist:
+    runs-on: ubuntu-20.04
+    if: startsWith(github.event.ref, 'refs/tags') || github.event_name == 'release'
+    steps:
+      - uses: actions/checkout@v2
+      - name: check packaging file
+        run: cat ${{ format('{0}', env.env_file) }}
+      - name: Setup Mambaforge
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          miniforge-variant: Mambaforge
+          miniforge-version: latest
+          activate-environment: ${{ env.env_name }}
+          use-mamba: true
+          python-version: ${{ env.python-version }}
+
+      - name: Set cache date
+        run: echo "DATE=$(date +'%Y%m%d')" >> $GITHUB_ENV
+
+      - uses: actions/cache@v2
+        with:
+          path: ${{ matrix.prefix }}
+          key: ${{ matrix.label }}-conda-${{ hashFiles(format('{0}', env.env_file)) }}-${{ env.DATE }}-${{ env.CACHE_NUMBER }}
+        id: cache
+
+      - name: Update environment
+        run: mamba env update -n ${{ env.env_name }} -f ${{ format('{0}', env.env_file) }}
+        if: steps.cache.outputs.cache-hit != 'true'
+      - name: Conda info
+        shell: bash -l {0}
+        run: |
+          conda info -a
+          conda list
+      - name: Build source
+        run: |
+          python setup.py sdist bdist_wheel
+          ls -lh dist/
+
+  publish-pypi:
+    runs-on: ubuntu-20.04
+    needs: build-sdist
+    if: startsWith(github.event.ref, 'refs/tags') || github.event_name == 'release'
+    steps:
+    - uses: actions/checkout@master
+    - uses: actions/setup-python@v2
+      with:
+        python-version: 3.7
+    - uses: actions/download-artifact@v2
+      with:
+        name: pypi-packages-${{ github.sha }}
+        path: dist
+    - run: ls -l dist/
+
+    - name: Publish distribution 📦 to PyPI
+      uses: pypa/gh-action-pypi-publish@v1.4.1
+      with:
+        user: __token__
+        password: ${{ secrets.pypi_password }}
