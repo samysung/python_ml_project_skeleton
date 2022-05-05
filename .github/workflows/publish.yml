@@ -15,6 +15,8 @@ env:
   env_name: packaging
   env_file: packaging/package_env.yml
   python_version: 3.9
+  prefix: /usr/share/miniconda3/envs/doc
+  label: ubuntu-20.04
 jobs:
 
   build-sdist:
@@ -38,8 +40,8 @@ jobs:
 
       - uses: actions/cache@v2
         with:
-          path: ${{ matrix.prefix }}
-          key: ${{ matrix.label }}-conda-${{ hashFiles(format('{0}', env.env_file)) }}-${{ env.DATE }}-${{ env.CACHE_NUMBER }}
+          path: ${{ env.prefix }}
+          key: ${{ env.label }}-conda-${{ hashFiles(format('{0}', env.env_file)) }}-${{ env.DATE }}-${{ env.CACHE_NUMBER }}
         id: cache
 
       - name: Update environment
