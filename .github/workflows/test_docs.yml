@@ -1,4 +1,5 @@
 name: test-docs
+# Workflow used to test publishing on
 
 on:
   push:
@@ -6,6 +7,9 @@ on:
   pull_request:
 #  schedule:
 #    - cron: "0 12 * * *" # test every 12 hours
+
+env:
+  CACHE_NUMBER: 2  # increase to reset cache manually
 
 jobs:
   build-docs:
