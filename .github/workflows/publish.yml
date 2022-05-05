@@ -6,6 +6,8 @@ name: PyPI Release
 on:  # Trigger the workflow on push, but only for the main branch
   push:
     branches: [main]
+    tags:
+      - v*
   release:
     types: [published]
 

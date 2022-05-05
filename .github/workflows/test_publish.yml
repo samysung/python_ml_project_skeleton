@@ -6,7 +6,8 @@ name: Test PyPI Release
 on:  # Trigger the workflow on push, but only for the test_pypi branch
   push:
     branches: [test_pypi]
-
+    tags:
+      - test-pypi*
 env:
   CACHE_NUMBER: 0
   env_name: packaging
