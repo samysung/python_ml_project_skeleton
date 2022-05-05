@@ -3,7 +3,7 @@ name: PyPI Release
 # https://help.github.com/en/actions/reference/events-that-trigger-workflows
 on:  # Trigger the workflow on push or pull request, but only for the master branch
   push:
-    branches: [main, test_pypi]
+    # branches: [main, test_pypi]
     tags:
     - test-pypi*
     - v*
@@ -56,6 +56,10 @@ jobs:
         run: |
           python setup.py sdist bdist_wheel
           ls -lh dist/
+      - uses: actions/upload-artifact@v2
+        with:
+          name: pypi-packages-${{ github.sha }}
+          path: dist
 
   publish-pypi:
     runs-on: ubuntu-20.04
