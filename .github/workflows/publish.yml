@@ -4,6 +4,9 @@ name: PyPI Release
 on:  # Trigger the workflow on push or pull request, but only for the master branch
   push:
     branches: [main, test_pypi]
+    tags:
+    - test-pypi*
+    - v*
   release:
     types: [published]
 
