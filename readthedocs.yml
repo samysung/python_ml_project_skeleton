@@ -10,5 +10,5 @@ conda:
 
 sphinx:
   builder: html
-  configuration: packaging/conf.py
+  configuration: docs/conf.py
   fail_on_warning: true

@@ -38,13 +38,13 @@ jobs:
         activate-environment: doc
         use-mamba: true
 
-    - name: Set cache date
-      run: echo "DATE=$(date +'%Y%m%d')" >> $GITHUB_ENV
+    # - name: Set cache date
+    #  run: echo "DATE=$(date +'%Y%m%d')" >> $GITHUB_ENV
 
     - uses: actions/cache@v2
       with:
         path: ${{ matrix.prefix }}
-        key: ${{ matrix.label }}-conda-${{ hashFiles(format('packaging/{0}_env.yml', matrix.env)) }}-${{ env.DATE }}-${{ env.CACHE_NUMBER }}
+        key: ${{ matrix.label }}-conda-${{ hashFiles(format('packaging/{0}_env.yml', matrix.env)) }}-${{ hashFiles(format('packaging/{0}_requirements.txt', matrix.env)) }}-${{ env.CACHE_NUMBER }}
       id: cache
 
     - name: Update environment
