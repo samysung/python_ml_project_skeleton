@@ -11,13 +11,14 @@ It is a long established fact that a reader will be distracted by the readable c
     :caption: GET STARTED
     :hidden:
 
-    readme_link.md
+    readme <readme_link.md>
 
 .. toctree::
    :maxdepth: 2
    :caption: API
 
    add <add.rst>
+   subtract <subtract.rst>
 
 .. toctree::
    :maxdepth: 1
