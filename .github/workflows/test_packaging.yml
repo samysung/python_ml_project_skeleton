@@ -44,13 +44,13 @@ jobs:
           use-mamba: true
           python-version: ${{ matrix.python-version }}
 
-      - name: Set cache date
-        run: echo "DATE=$(date +'%Y%m%d')" >> $GITHUB_ENV
+      # - name: Set cache date
+      #  run: echo "DATE=$(date +'%Y%m%d')" >> $GITHUB_ENV
 
       - uses: actions/cache@v2
         with:
           path: ${{ matrix.prefix }}
-          key: ${{ matrix.label }}-conda-${{ hashFiles(format('packaging/{0}_env.yml', matrix.env)) }}-${{ env.DATE }}-${{ env.CACHE_NUMBER }}
+          key: ${{ matrix.label }}-conda-${{ hashFiles(format('packaging/{0}_env.yml', matrix.env)) }}-${{ hashFiles(format('packaging/{0}_requirements.txt', matrix.env)) }}-${{ env.CACHE_NUMBER }}
         id: cache
 
       - name: Update environment
@@ -61,7 +61,7 @@ jobs:
         run: |
           conda info -a
           conda list
-      - name: Download Kornia binary
+      - name: install package with pip
         shell: bash -l {0}
         run: |
           pip install pmps
