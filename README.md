@@ -126,8 +126,8 @@ install dependencis via conda before installing the package:
 │   │   └── test_subtract.py
 │   └── __init__.py
 └── VERSION
-
 ```
+
 
 ### Architecture component overview
 
@@ -151,5 +151,49 @@ with a big emphasis on continuous integration and continuous deployment.
 Here is a schematic view of the Ci/Cd pipeline targeted for
 open source python project, largely inspired by others well
 known projects:
-
+#### DIAGRAM
 ![Ci/Cd diagram](docs/_static/img/CiCd_pipeline.svg)
+#### Github Workflows
+
+##### test code worflow (.github/workflows/test_code.yml):
+
+  Used to run unit test (and functionnal if implemented) tests on pull request events
+  or push on main branch. It publishes coverage results on codecov.io.
+  Use the packaging/test_env.yml conda environment file, github cache action and codecov/codecov-action
+
+##### test docs workflow (.github/workflows/test_docs.yml):
+
+ Used to test the build of sphinx documentation. Run on pull request events
+ or push on main branch.
+ Use the packaging/doc_env.yml conda environment file, and the github cache action.
+
+##### publish workflow (.github/workflows/publish.yml):
+
+ Used to publish the package on pypi, when a new tagged version or release is published.
+ Use the packaging/package_env.yml conda environment file, github cache action github download
+ and upload artifacts, and gh-action-pypi-publish.
+
+##### test publish workflow (.github/workflows/test_publish.yml):
+
+ Same worflow as above, but on a test branch and test.pypi forge,
+ for testing deployment improvement recipes
+
+##### test packaging workflow (.github/workflows/test_packaging.yml):
+
+ Worflow actioned by CRON event (see [crontab-guru](https://crontab.guru/)), every n hours. Used
+ to test that the package has been published and the lasted version is working.
+
+#### Github workflows based on github webhooks or githu Apps
+ Some workflow works are handled by third party applications, like the readthe docs publication or the online
+ pre-commit static analysis.
+
+###### Pre-commit
+
+ Pre-commit action is launched via a github app (pre-commit.ci) on every commit made on remote.
+ it's configured via the file pre-commit-config.yaml
+
+###### Read-the-docs publication
+
+ Readthedocs publish new documentation version via a webhook subscribed for push and commit event.
+ You can configure the type of push trigering the process in the readthedocs.org configuration section.
+ See read the docs documentation for more detail.
