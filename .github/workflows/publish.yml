@@ -3,7 +3,7 @@ name: PyPI Release
 # https://help.github.com/en/actions/reference/events-that-trigger-workflows
 # This workflow is used to publish a distribution on pypi at the official url
 # https://pypi.org/legacy/ when a new release and/or tag version is released
-on:  # Trigger the workflow on push, but only for the main branch
+on:  # Trigger the workflow on push, but only for the main branch, actions are conditioned on tagged commit and/or release
   push:
     branches: [main]
     tags:
@@ -54,6 +54,7 @@ jobs:
           conda info -a
           conda list
       - name: Build source
+        shell: bash -l {0}
         run: |
           python setup.py sdist bdist_wheel
           ls -lh dist/

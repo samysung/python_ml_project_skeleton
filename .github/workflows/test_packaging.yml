@@ -50,7 +50,7 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: ${{ matrix.prefix }}
-          key: ${{ matrix.label }}-conda-${{ hashFiles(format('packaging/{0}_env.yml', matrix.env)) }}-${{ hashFiles(format('packaging/{0}_requirements.txt', matrix.env)) }}-${{ env.CACHE_NUMBER }}
+          key: ${{ matrix.label }}-conda-${{ hashFiles(format('packaging/{0}_env.yml', matrix.env)) }}-${{ hashFiles(format('packaging/{0}_requirements.txt', matrix.env)) }}-${{ env.CACHE_NUMBER }}-${{ env.DATE }}
         id: cache
 
       - name: Update environment
