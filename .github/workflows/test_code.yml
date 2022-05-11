@@ -10,7 +10,7 @@ on:
 #    - cron: "0 4 * * *"
 
 env:
-  CACHE_NUMBER: 2  # increase to reset cache manually
+  CACHE_NUMBER: 3  # increase to reset cache manually
 
 jobs:
   tests-cpu:
@@ -55,12 +55,15 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ${{ matrix.prefix }}
-        key: ${{ matrix.label }}-conda-${{ hashFiles(format('packaging/{0}_env.yml', matrix.env)) }}-${{ hashFiles(format('packaging/{0}_requirements.txt', matrix.env)) }}-${{ env.CACHE_NUMBER }}
+        key: ${{ matrix.label }}-conda-${{ hashFiles(format('packaging/{0}_env.yml', matrix.env)) }}-${{ hashFiles(format('packaging/{0}_requirements.txt', matrix.env)) }}-${{ env.CACHE_NUMBER }}-${{ env.DATE }}
+        restore-keys: |
+          ${{ matrix.label }}-conda
+          ${{ matrix.label }}
       id: cache
 
     - name: Update environment
       run: mamba env update -n ${{ matrix.env }} -f ${{ format('packaging/{0}_env.yml', matrix.env) }}
-      if: ${{ steps.cache.outputs.cache-hit != 'true' || matrix.os == 'macos-latest'}}
+      if: ${{ steps.cache.outputs.cache-hit != 'true' || runner.os == 'macOS'}}
 
     - name: Conda info
       shell: bash -l {0}
