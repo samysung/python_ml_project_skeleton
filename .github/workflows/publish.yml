@@ -47,7 +47,7 @@ jobs:
 
       - name: Update environment
         run: mamba env update -n ${{ env.env_name }} -f ${{ format('{0}', env.env_file) }}
-        if: steps.cache.outputs.cache-hit != 'true'
+        if: ${{ steps.cache.outputs.cache-hit != 'true' || runner.os == 'macOS' }}
       - name: Conda info
         shell: bash -l {0}
         run: |
