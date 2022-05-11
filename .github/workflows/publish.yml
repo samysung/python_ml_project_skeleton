@@ -54,6 +54,7 @@ jobs:
           conda info -a
           conda list
       - name: Build source
+        shell: bash -l {0}
         run: |
           python setup.py sdist bdist_wheel
           ls -lh dist/

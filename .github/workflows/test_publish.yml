@@ -22,8 +22,10 @@ jobs:
     if: startsWith(github.event.ref, 'refs/tags') || github.event_name == 'release'
     steps:
       - uses: actions/checkout@v2
+
       - name: check packaging file
         run: cat ${{ format('{0}', env.env_file) }}
+
       - name: Setup Mambaforge
         uses: conda-incubator/setup-miniconda@v2
         with:
@@ -45,15 +47,19 @@ jobs:
       - name: Update environment
         run: mamba env update -n ${{ env.env_name }} -f ${{ format('{0}', env.env_file) }}
         if: steps.cache.outputs.cache-hit != 'true'
+
       - name: Conda info
         shell: bash -l {0}
         run: |
           conda info -a
           conda list
+
       - name: Build source
+        shell: bash -l {0}
         run: |
           python setup.py sdist bdist_wheel
           ls -lh dist/
+
       - uses: actions/upload-artifact@v2
         with:
           name: pypi-packages-${{ github.sha }}
