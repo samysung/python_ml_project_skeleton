@@ -60,7 +60,7 @@ jobs:
 
     - name: Update environment
       run: mamba env update -n ${{ matrix.env }} -f ${{ format('packaging/{0}_env.yml', matrix.env) }}
-      if: ${{ steps.cache.outputs.cache-hit != 'true' || matrix.os != 'macos-latest'}}
+      if: ${{ steps.cache.outputs.cache-hit != 'true' || matrix.os == 'macos-latest'}}
 
     - name: Conda info
       shell: bash -l {0}
